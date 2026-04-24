@@ -222,7 +222,7 @@ CREATE POLICY "Admins can delete project images"
 
 -- Insert default site settings
 INSERT INTO public.site_settings (key, value) VALUES
-  ('site_name', 'AI Portfolio'),
+  ('site_name', "Preksh's Portfolio"),
   ('tagline', 'AI Developer | Machine Learning Researcher'),
   ('bio', 'Machine Learning Researcher passionate about advancing AI capabilities through innovative projects and cutting-edge research.'),
   ('github_url', 'https://github.com'),

@@ -90,7 +90,7 @@ export default function AdminSettings() {
               <Input
                 value={settings.site_name}
                 onChange={(e) => setSettings({ ...settings, site_name: e.target.value })}
-                placeholder="AI Portfolio"
+                placeholder="Preksh's Portfolio"
               />
             </div>
             <div>

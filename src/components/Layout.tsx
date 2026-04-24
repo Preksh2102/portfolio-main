@@ -131,7 +131,7 @@ export function Layout({ children }: LayoutProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <Brain className="w-6 h-6 text-primary" />
-              <span className="font-semibold">AI Portfolio</span>
+              <span className="font-semibold">Preksh's Portfolio</span>
             </div>
             <div className="flex items-center gap-4">
               <a
