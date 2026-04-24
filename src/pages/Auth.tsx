@@ -62,7 +62,7 @@ export default function Auth() {
               <Brain className="w-6 h-6 text-primary" />
             </div>
             <span className="font-bold text-xl text-foreground">
-              AI<span className="text-primary">Portfolio</span>
+              Preksh's<span className="text-primary">Portfolio</span>
             </span>
           </div>
 
