@@ -33,7 +33,7 @@ export function Layout({ children }: LayoutProps) {
               <Brain className="w-5 h-5 text-primary" />
             </div>
             <span className="font-bold text-lg hidden sm:block">
-              AI<span className="text-primary">Portfolio</span>
+              Preksh's <span className="text-primary">Portfolio</span>
             </span>
           </Link>
 
