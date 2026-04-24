@@ -139,7 +139,7 @@
 
   .card-shine::after {
     content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
     background: linear-gradient(
       135deg,
       transparent 40%,
