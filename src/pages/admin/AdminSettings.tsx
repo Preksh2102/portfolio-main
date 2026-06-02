@@ -51,17 +51,25 @@ export default function AdminSettings() {
         }
       });
       setSettings(settingsObj);
+    } else if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
     }
   };
 
   const handleSave = async () => {
     setSaving(true);
 
-    const updates = Object.entries(settings).map(([key, value]) =>
-      supabase.from("site_settings").update({ value }).eq("key", key)
-    );
+    // Use upsert so missing keys are created (not silently ignored by UPDATE).
+    const rows = Object.entries(settings).map(([key, value]) => ({ key, value }));
+    const { error } = await supabase
+      .from("site_settings")
+      .upsert(rows, { onConflict: "key" });
 
-    await Promise.all(updates);
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+      setSaving(false);
+      return;
+    }
 
     toast({ title: "Success", description: "Settings saved" });
     setSaving(false);
