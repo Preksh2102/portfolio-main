@@ -24,7 +24,7 @@ export default function AdminMessages() {
 
   const fetchMessages = async () => {
     const { data, error } = await supabase
-      .from("contact_submissions")
+      .from("contact_messages")
       .select("*")
       .order("created_at", { ascending: false });
 
@@ -35,7 +35,7 @@ export default function AdminMessages() {
 
   const toggleRead = async (id: string, isRead: boolean) => {
     const { error } = await supabase
-      .from("contact_submissions")
+      .from("contact_messages")
       .update({ is_read: !isRead })
       .eq("id", id);
 
@@ -49,7 +49,7 @@ export default function AdminMessages() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this message?")) return;
 
-    const { error } = await supabase.from("contact_submissions").delete().eq("id", id);
+    const { error } = await supabase.from("contact_messages").delete().eq("id", id);
 
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });

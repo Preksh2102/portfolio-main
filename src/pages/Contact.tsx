@@ -63,7 +63,7 @@ export default function Contact() {
     setIsSubmitting(true);
 
     // Save to database
-    const { error } = await supabase.from("contact_submissions").insert({
+    const { error } = await supabase.from("contact_messages").insert({
       name: formData.name,
       email: formData.email,
       message: formData.message,

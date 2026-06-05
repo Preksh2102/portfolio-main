@@ -20,7 +20,7 @@ export default function AdminHome() {
     const [projectsRes, papersRes, messagesRes] = await Promise.all([
       supabase.from("projects").select("id", { count: "exact", head: true }),
       supabase.from("research_papers").select("id", { count: "exact", head: true }),
-      supabase.from("contact_submissions").select("id", { count: "exact", head: true }).eq("is_read", false),
+      supabase.from("contact_messages").select("id", { count: "exact", head: true }).eq("is_read", false),
     ]);
 
     setStats({

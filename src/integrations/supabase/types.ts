@@ -14,12 +14,11 @@ export type Database = {
   }
   public: {
     Tables: {
-      contact_submissions: {
+      contact_messages: {
         Row: {
           created_at: string
           email: string
           id: string
-          is_read: boolean | null
           message: string
           name: string
         }

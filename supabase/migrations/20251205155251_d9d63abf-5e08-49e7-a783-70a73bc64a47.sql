@@ -86,17 +86,16 @@ CREATE TABLE public.site_settings (
 
 ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
 
--- Create contact_submissions table
-CREATE TABLE public.contact_submissions (
+-- Create contact_messages table
+CREATE TABLE public.contact_messages (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   message TEXT NOT NULL,
-  is_read BOOLEAN DEFAULT false,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
-ALTER TABLE public.contact_submissions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.contact_messages ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies
 
@@ -153,17 +152,17 @@ CREATE POLICY "Admins can manage site settings"
   ON public.site_settings FOR ALL
   USING (public.has_role(auth.uid(), 'admin'));
 
--- contact_submissions: anyone can insert, admin can read
+-- contact_messages: anyone can insert, admin can read
 CREATE POLICY "Anyone can submit contact form"
-  ON public.contact_submissions FOR INSERT
+  ON public.contact_messages FOR INSERT
   WITH CHECK (true);
 
 CREATE POLICY "Admins can view submissions"
-  ON public.contact_submissions FOR SELECT
+  ON public.contact_messages FOR SELECT
   USING (public.has_role(auth.uid(), 'admin'));
 
 CREATE POLICY "Admins can manage submissions"
-  ON public.contact_submissions FOR ALL
+  ON public.contact_messages FOR ALL
   USING (public.has_role(auth.uid(), 'admin'));
 
 -- Create storage buckets for PDFs and images
