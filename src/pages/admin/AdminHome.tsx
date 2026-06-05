@@ -20,7 +20,7 @@ export default function AdminHome() {
     const [projectsRes, papersRes, messagesRes] = await Promise.all([
       supabase.from("projects").select("id", { count: "exact", head: true }),
       supabase.from("research_papers").select("id", { count: "exact", head: true }),
-      supabase.from("contact_messages").select("id", { count: "exact", head: true }).eq("is_read", false),
+      supabase.from("contact_messages").select("id", { count: "exact", head: true }),
     ]);
 
     setStats({
@@ -33,7 +33,7 @@ export default function AdminHome() {
   const statCards = [
     { label: "Total Projects", value: stats.projects, icon: FolderKanban, color: "text-blue-500" },
     { label: "Research Papers", value: stats.papers, icon: FileText, color: "text-green-500" },
-    { label: "Unread Messages", value: stats.messages, icon: Mail, color: "text-primary" },
+    { label: "Messages", value: stats.messages, icon: Mail, color: "text-primary" },
   ];
 
   return (
