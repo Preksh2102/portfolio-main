@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Github, Linkedin, BookOpen, MapPin, Clock } from "lucide-react";
+import { Send, Mail, Globe, Link2, BookOpen, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,13 +23,20 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [settings, setSettings] = useState<Settings>({
-    github_url: "https://github.com/Preksh2102",
+    github_url: "https://github.com",
     linkedin_url: "https://linkedin.com",
     scholar_url: "https://scholar.google.com",
-    email: "prekshgala@gmail.com",
-    location: "Dubai, UAE",
+    email: "contact@example.com",
+    location: "San Francisco, CA",
   });
   const { toast } = useToast();
+
+  const normalizeExternalUrl = (url: string) => {
+    const trimmed = url.trim();
+    if (!trimmed) return "";
+    if (/^(https?:\/\/|mailto:|tel:)/i.test(trimmed)) return trimmed;
+    return `https://${trimmed}`;
+  };
 
   useEffect(() => {
     fetchSettings();
@@ -61,6 +68,7 @@ export default function Contact() {
       email: formData.email,
       message: formData.message,
     });
+   console.log(error);
 
     if (error) {
       toast({
@@ -80,10 +88,10 @@ export default function Contact() {
   };
 
   const socialLinks = [
-    { icon: Github, label: "GitHub", href: settings.github_url, username: "@Preksh2102" },
-    { icon: Linkedin, label: "LinkedIn", href: settings.linkedin_url, username: "Your Name" },
-    { icon: BookOpen, label: "Google Scholar", href: settings.scholar_url, username: "View Profile" },
-    { icon: Mail, label: "Email", href: `mailto:${"prekshgala@gmail.com"}`, username: "prekshgala@gmail.com" },
+    { icon: Globe, label: "GitHub", href: normalizeExternalUrl(settings.github_url), username: settings.github_url },
+    { icon: Link2, label: "LinkedIn", href: normalizeExternalUrl(settings.linkedin_url), username: settings.linkedin_url },
+    { icon: BookOpen, label: "Google Scholar", href: normalizeExternalUrl(settings.scholar_url), username: settings.scholar_url },
+    { icon: Mail, label: "Email", href: `mailto:${settings.email}`, username: settings.email },
   ];
 
   return (
@@ -208,7 +216,7 @@ export default function Contact() {
                 <div>
                   <div className="font-medium">Location</div>
                   <div className="text-sm text-muted-foreground">
-                    {"Dubai, UAE"}
+                    {settings.location}
                   </div>
                 </div>
               </div>
