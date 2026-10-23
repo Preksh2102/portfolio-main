@@ -139,15 +139,15 @@ export default function Resume() {
             {[
               {
                 title: "Education",
-                items: ["B.S. Computer Science", "Focus: AI & ML", "GPA: 4.0"],
+                items: ["International General Certification of Secondary Education", "Focus: AI & ML", "Grades: 9 average"],
               },
               {
                 title: "Skills",
-                items: ["Python, PyTorch, TensorFlow", "Computer Vision, NLP", "Full-Stack Development"],
+                items: ["Python, PyTorch, TensorFlow", "Computer Vision, NLP", "Web Development, Database Management"],
               },
               {
                 title: "Experience",
-                items: ["AI Research Intern", "ML Engineering Projects", "Open Source Contributions"],
+                  items: ["AI Research Intern", "ML Engineering Projects", "Web Development Projects", "Database Management Projects"],
               },
             ].map((section, index) => (
               <motion.div
